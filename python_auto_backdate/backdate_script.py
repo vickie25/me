@@ -8,28 +8,28 @@ file_path = "auto_backdate_file.py"
 # Path to the Git repository
 repo_path = f"/Users/marciacripps/Documents/Github/backdate_github_squares/python_auto_backdate/"
 # Hard-code the start date
-start_date = datetime(2025, 11, 12)
+start_date = datetime(2025, 11, 10)
 commit_message = "marcia"
 
-# Function to alter the file by adding and then removing '-#mcc\n'
+# Function to alter the file by adding and then removing '#mcc\n'
 def modify_file(file_path, action, date_str):
     try:
-        # Add or remove '-#mcc' with a unique identifier (date) to ensure a real change
+        # Add or remove '#mcc' with a unique identifier (date) to ensure a real change
         if action == 'add':
             with open(file_path, 'a') as file:  
-                file.write(f'-#mcc {date_str}\n')  
+                file.write(f'#mcc {date_str}\n')  
                 file.flush()  
                 os.fsync(file.fileno()) 
-            print(f"Successfully added '-#mcc {date_str}' to {file_path}")
+            print(f"Successfully added '#mcc {date_str}' to {file_path}")
         elif action == 'remove':
             with open(file_path, 'rb+') as file:  
-                file.seek(-len(f'-#mcc {date_str}\n'), 2)  # Move to the position of the unique comment
-                if file.read(len(f'-#mcc {date_str}\n')) == f'-#mcc {date_str}\n'.encode():
-                    file.seek(-len(f'-#mcc {date_str}\n'), 2) 
+                file.seek(-len(f'#mcc {date_str}\n'), 2)  # Move to the position of the unique comment
+                if file.read(len(f'#mcc {date_str}\n')) == f'#mcc {date_str}\n'.encode():
+                    file.seek(-len(f'#mcc {date_str}\n'), 2) 
                     file.truncate()  
                     file.flush()  
                     os.fsync(file.fileno())  
-            print(f"Successfully removed '-#mcc {date_str}' from {file_path}")
+            print(f"Successfully removed '#mcc {date_str}' from {file_path}")
     except Exception as e:
         print(f"Error modifying file: {e}")
 
@@ -49,7 +49,7 @@ def run_git_command(command):
 
 # Loop through each day
 current_date = datetime.now()
-day_counter = 0  # To track whether to add or remove '-#mcc'
+day_counter = 0  # To track whether to add or remove '#mcc + date string'
 while start_date <= current_date:
     try:
         backdate_str = start_date.strftime("%Y-%m-%d")
