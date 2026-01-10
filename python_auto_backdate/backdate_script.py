@@ -6,7 +6,7 @@ import time
 # Path to the file to modify
 file_path = "auto_backdate_file.py"
 # Path to the Git repository
-repo_path = f"C:\Users\HomePC\Desktop\backdate_github_squares\python_auto_backdate"
+repo_path = r"C:\Users\HomePC\Desktop\backdate_github_squares\python_auto_backdate"
 # Hard-code the start date
 start_date = datetime(2022, 7, 3)
 commit_message = "Done for today"
