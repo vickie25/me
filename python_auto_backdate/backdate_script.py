@@ -6,10 +6,10 @@ import time
 # Path to the file to modify
 file_path = "auto_backdate_file.py"
 # Path to the Git repository
-repo_path = f"/Users/marciacripps/Documents/Github/backdate_github_squares/python_auto_backdate/"
+repo_path = f"C:\Users\HomePC\Desktop\backdate_github_squares\python_auto_backdate"
 # Hard-code the start date
-start_date = datetime(2025, 11, 10)
-commit_message = "marcia"
+start_date = datetime(2022, 7, 3)
+commit_message = "Done for today"
 
 # Function to alter the file by adding and then removing '#mcc\n'
 def modify_file(file_path, action, date_str):
