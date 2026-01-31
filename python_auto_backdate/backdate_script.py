@@ -8,28 +8,28 @@ file_path = "auto_backdate_file.py"
 # Path to the Git repository
 repo_path = r"C:\Users\HomePC\Desktop\backdate_github_squares\python_auto_backdate"
 # Hard-code the start date
-start_date = datetime(2022, 7, 3)
+start_date = datetime(2026, 1, 1)
 commit_message = "Done for today"
 
-# Function to alter the file by adding and then removing '#mcc\n'
+# Function to alter the file by adding and then removing 'done\n'
 def modify_file(file_path, action, date_str):
     try:
-        # Add or remove '#mcc' with a unique identifier (date) to ensure a real change
+        # Add or remove 'done' with a unique identifier (date) to ensure a real change
         if action == 'add':
             with open(file_path, 'a') as file:  
-                file.write(f'#mcc {date_str}\n')  
+                file.write(f'done {date_str}\n')  
                 file.flush()  
                 os.fsync(file.fileno()) 
-            print(f"Successfully added '#mcc {date_str}' to {file_path}")
+            print(f"Successfully added 'done {date_str}' to {file_path}")
         elif action == 'remove':
             with open(file_path, 'rb+') as file:  
-                file.seek(-len(f'#mcc {date_str}\n'), 2)  # Move to the position of the unique comment
-                if file.read(len(f'#mcc {date_str}\n')) == f'#mcc {date_str}\n'.encode():
-                    file.seek(-len(f'#mcc {date_str}\n'), 2) 
+                file.seek(-len(f'done {date_str}\n'), 2)  # Move to the position of the unique comment
+                if file.read(len(f'done {date_str}\n')) == f'done {date_str}\n'.encode():
+                    file.seek(-len(f'done {date_str}\n'), 2) 
                     file.truncate()  
                     file.flush()  
                     os.fsync(file.fileno())  
-            print(f"Successfully removed '#mcc {date_str}' from {file_path}")
+            print(f"Successfully removed 'done {date_str}' from {file_path}")
     except Exception as e:
         print(f"Error modifying file: {e}")
 
